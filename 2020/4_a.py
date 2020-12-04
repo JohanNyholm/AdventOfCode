@@ -1,38 +1,29 @@
+import re
+
 import common
 
 
 def parse_input(file_name):
-    passports_raw = []
-    passport_raw = ''
-    for line in common.get_input_lines(file_name):
-        if not line:
-            passports_raw.append(passport_raw)
-            passport_raw = ''
-            continue
-        if passport_raw:
-            passport_raw += ' ' + line
-        else:
-            passport_raw = line
-    passports_raw.append(passport_raw)
+    return [
+        {
+            kv[0]: kv[1]
+            for kv
+            in re.findall(r'(?:(\S+)\:(\S+))', passport_raw)
+        } for passport_raw in common.get_input(file_name).split('\n\n')
+    ]
 
-    passports = []
-    for passport_raw in passports_raw:
-        passport = {}
-        for kw_pair in passport_raw.split(' '):
-            key, value = kw_pair.split(':')
-            passport[key] = value
-        passports.append(passport)
 
-    return passports
+def _validate_passport(passport, required_fields):
+    return not required_fields.difference(set(passport.keys()))
 
 
 def solve(passports, required_fields):
-    num_valid = 0
-    for passport in passports:
-        passport_keys = set(passport.keys())
-        if not required_fields.difference(passport_keys):
-            num_valid += 1
-    return num_valid
+    return sum(
+        _validate_passport(
+            passport,
+            required_fields
+        ) for passport in passports
+    )
 
 
 required_fields = set([
