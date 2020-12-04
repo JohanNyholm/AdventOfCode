@@ -6,7 +6,7 @@ import common
 
 def parse_input(file_name):
     settings = []
-    for line in common.get_input(file_name):
+    for line in common.get_input_lines(file_name):
         index1, index2, char, password = re.search(r'(\d+)-(\d+) ([a-z]): ([a-z]+)', line).groups(0)
         indexes = [int(v) - 1 for v in (index1, index2)]
         settings.append({

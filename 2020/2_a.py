@@ -5,7 +5,7 @@ import common
 
 def parse_input(file_name):
     settings = []
-    for line in common.get_input(file_name):
+    for line in common.get_input_lines(file_name):
         span_start, span_end, char, password = re.search(r'(\d+)-(\d+) ([a-z]): ([a-z]+)', line).groups(0)
         span = [int(s) for s in (span_start, span_end)]
         settings.append({

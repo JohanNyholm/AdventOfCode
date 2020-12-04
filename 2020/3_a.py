@@ -2,7 +2,7 @@ import common
 
 
 def parse_input(file_name):
-    return [[1 if v == '#' else 0 for v in line] for line in common.get_input(file_name)]
+    return [[1 if v == '#' else 0 for v in line] for line in common.get_input_lines(file_name)]
 
 
 def solve(grid, dx, dy):
