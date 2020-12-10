@@ -25,7 +25,7 @@ def solve(rows):
     return num_correct
 
 
-file_name = '2.txt'
+file_name = '02.txt'
 rows = parse_input(file_name)
 solution = solve(rows)
 print(solution)

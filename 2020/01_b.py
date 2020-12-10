@@ -20,7 +20,7 @@ def solve_3(numbers, target_sum):
     return None, None, None
 
 
-file_name = '1.txt'
+file_name = '01.txt'
 target_sum = 2020
 number_list = common.get_int_input(file_name)
 numbers = set(number_list)

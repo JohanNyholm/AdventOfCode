@@ -11,7 +11,7 @@ def solve(grid, dx, dy):
     return sum(grid[y][(i*dx) % x_max] for i, y in enumerate(range(0, y_max, dy)))
 
 
-file_name = '3.txt'
+file_name = '03.txt'
 grid = parse_input(file_name)
 directions = [
     (1, 1),

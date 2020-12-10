@@ -83,7 +83,7 @@ field_validators = {
     'pid': partial(_validate_regex, regex=r'^([\d]{9})$'),
     # 'cid',
 }
-file_name = '4.txt'
+file_name = '04.txt'
 passports = parse_input(file_name)
 solution = solve(passports, required_fields, field_validators)
 print(solution)

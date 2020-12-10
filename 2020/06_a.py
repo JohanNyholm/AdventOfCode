@@ -12,7 +12,7 @@ def solve(groups):
     return sum(len(group) for group in groups)
 
 
-file_name = '6.txt'
+file_name = '06.txt'
 groups = parse_input(file_name)
 solution = solve(groups)
 print(solution)

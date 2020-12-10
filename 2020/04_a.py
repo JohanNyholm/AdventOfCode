@@ -36,7 +36,7 @@ required_fields = set([
     'pid',
     # 'cid',
 ])
-file_name = '4.txt'
+file_name = '04.txt'
 passports = parse_input(file_name)
 solution = solve(passports, required_fields)
 print(solution)

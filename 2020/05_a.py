@@ -18,7 +18,7 @@ def solve(seat_numbers):
     return max(seat_numbers)
 
 
-file_name = '5.txt'
+file_name = '05.txt'
 seat_numbers = parse_input(file_name)
 solution = solve(seat_numbers)
 print(solution)

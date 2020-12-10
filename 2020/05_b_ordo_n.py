@@ -23,7 +23,7 @@ def solve(seat_numbers):
     return occupied_seats.index(False) + min_seat
 
 
-file_name = '5.txt'
+file_name = '05.txt'
 seat_numbers = parse_input(file_name)
 solution = solve(seat_numbers)
 print(solution)

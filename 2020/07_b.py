@@ -39,7 +39,7 @@ def solve(content_rules):
     return child_bag_count(SHINY_BAG)
 
 
-file_name = '7.txt'
+file_name = '07.txt'
 bag_rules = parse_input(file_name)
 solution = solve(bag_rules)
 print(solution)

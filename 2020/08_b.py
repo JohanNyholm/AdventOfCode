@@ -80,7 +80,7 @@ def solve(instructions):
             return exit_state['accumulator']
 
 
-file_name = '8.txt'
+file_name = '08.txt'
 instructions = parse_input(file_name)
 solution = solve(instructions)
 print(solution)

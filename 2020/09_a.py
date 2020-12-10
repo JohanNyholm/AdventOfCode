@@ -23,7 +23,7 @@ def solve(numbers, window_size):
     return _get_first_invalid_number(numbers, window_size)
 
 
-file_name = '9.txt'
+file_name = '09.txt'
 numbers = parse_input(file_name)
 solution = solve(numbers, 25)
 print(solution)
