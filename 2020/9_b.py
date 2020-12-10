@@ -1,3 +1,6 @@
+import re
+from functools import lru_cache
+
 import common
 
 
@@ -33,7 +36,8 @@ def _get_sum_range(numbers, invalid_number):
 
 def solve(numbers, window_size):
     invalid_number = _get_first_invalid_number(numbers, window_size)
-    return _get_sum_range(numbers, invalid_number)
+    with common.Timer('sum range'):
+        return _get_sum_range(numbers, invalid_number)
 
 
 file_name = '9.txt'
