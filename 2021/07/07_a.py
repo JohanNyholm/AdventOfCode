@@ -13,8 +13,6 @@ def parse(file):
 
 
 def solve(positions):
-    with open('test.txt', 'w') as f:
-        f.write(','.join(str(v) for v in sorted(positions)))
     min_pos = min(positions)
     max_pos = max(positions)
     acc_pos_costs = defaultdict(int)
