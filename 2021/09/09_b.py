@@ -68,7 +68,7 @@ def main():
     solution = solve(matrix)
     t2 = perf_counter()
     print(f" {t2-t1}s")
-    print("Solution:", solve(matrix))
+    print("Solution:", solution)
 
 
 if __name__ == '__main__':
