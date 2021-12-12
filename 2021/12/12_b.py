@@ -1,5 +1,6 @@
 from collections import defaultdict, namedtuple
 import pathlib
+from functools import lru_cache
 
 
 ROOT_DIR = pathlib.Path(__file__).parent.parent
@@ -37,6 +38,7 @@ def build_graph(edges):
 def solve(edges):
     connections, multivisit_caves = build_graph(edges)
 
+    @lru_cache
     def count_paths_to_end(visited, cave, dual_visit_cave):
         if cave == END:
             if dual_visit_cave is not None and dual_visit_cave not in visited:
@@ -59,7 +61,7 @@ def solve(edges):
             )
         return visits
 
-    num_paths = count_paths_to_end(set(), START, dual_visit_cave=None)
+    num_paths = count_paths_to_end(frozenset(), START, dual_visit_cave=None)
     return num_paths
 
 
