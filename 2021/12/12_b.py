@@ -38,7 +38,7 @@ def build_graph(edges):
 def solve(edges):
     connections, multivisit_caves = build_graph(edges)
 
-    @lru_cache
+    @lru_cache(maxsize=None)
     def count_paths_to_end(visited, cave, dual_visit_cave):
         if cave == END:
             if dual_visit_cave is not None and dual_visit_cave not in visited:
