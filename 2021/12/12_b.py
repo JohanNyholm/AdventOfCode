@@ -15,6 +15,19 @@ START = 'start'
 END = 'end'
 
 
+from time import perf_counter
+class verbose_timer:
+    def __init__(self):
+        pass
+
+    def __enter__(self):
+        self.t1 = perf_counter()
+
+    def __exit__(self, *argv):
+        self.t2 = perf_counter()
+        print(f" {self.t2-self.t1}s")
+
+
 def parse(file):
     with open(file, 'r') as f:
         content = f.read()
@@ -64,11 +77,9 @@ def solve(edges):
 
 def main():
     edges = parse(INPUT_DIR / '12.txt')
-    from time import perf_counter
-    t1 = perf_counter()
-    solution = solve(edges)
-    t2 = perf_counter()
-    print(f" {t2-t1}s")
+    with verbose_timer():
+        solution = solve(edges)
+
     print("Solution:", solution)
 
 
