@@ -34,9 +34,16 @@ def build_graph(edges):
     return connections, multivisit_caves
     
 
-
 def solve(edges):
     connections, multivisit_caves = build_graph(edges)
+
+    @lru_cache(maxsize=None)
+    def count_connected_paths_to_end(visited, cave, dual_visit_cave):
+        return sum(
+            count_paths_to_end(visited, connected_cave, dual_visit_cave=dual_visit_cave)
+            for connected_cave in connections[cave]
+            if connected_cave in multivisit_caves or connected_cave not in visited
+        )
 
     @lru_cache(maxsize=None)
     def count_paths_to_end(visited, cave, dual_visit_cave):
@@ -45,21 +52,11 @@ def solve(edges):
                 # This path did not use it's dual visit superpower and is thus a duplicate
                 return 0
             return 1
-        visited_without_current_cave = visited
-        visited = visited.union({cave})
 
-        visits = sum(
-            count_paths_to_end(visited, connected_cave, dual_visit_cave=dual_visit_cave)
-            for connected_cave in connections[cave]
-            if connected_cave in multivisit_caves or connected_cave not in visited
-        )
+        num_paths = count_connected_paths_to_end(visited.union({cave}), cave, dual_visit_cave)
         if cave not in multivisit_caves and cave != START and dual_visit_cave is None:
-            visits += sum(
-                count_paths_to_end(visited_without_current_cave, connected_cave, dual_visit_cave=cave)
-                for connected_cave in connections[cave]
-                if connected_cave in multivisit_caves or connected_cave not in visited
-            )
-        return visits
+            num_paths += count_connected_paths_to_end(visited, cave, dual_visit_cave=cave)
+        return num_paths
 
     num_paths = count_paths_to_end(frozenset(), START, dual_visit_cave=None)
     return num_paths

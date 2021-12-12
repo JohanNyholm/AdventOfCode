@@ -31,7 +31,6 @@ def build_graph(edges):
             if p.upper() == p:
                 multivisit_caves.add(p)
     return connections, multivisit_caves
-    
 
 
 def solve(edges):
