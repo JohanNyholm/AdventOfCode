@@ -31,18 +31,18 @@ def parse(file):
 
 def main():
     possible_gears, numbers = parse(INPUT_DIR / '03.data')
-    number_inverse_map = {}
+    occupant_map = {}
     for (x, y), number in numbers.items():
-        number_inverse_map.update(
+        occupant_map.update(
             {(x_, y): (x, y) for x_ in range(x, x + len(number))}
         )
     gear_powers = []
     for (x, y) in possible_gears:
         adjacent_numbers = {
-            number_inverse_map[(x_, y_)]
+            occupant_map[(x_, y_)]
             for x_ in range(x - 1, x + 2)
             for y_ in range(y - 1, y + 2)
-            if (x_, y_) in number_inverse_map
+            if (x_, y_) in occupant_map
         }
         if len(adjacent_numbers) == 2:
             gear_powers.append(int(numbers[adjacent_numbers.pop()]) * int(numbers[adjacent_numbers.pop()]))
