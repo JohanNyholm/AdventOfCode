@@ -13,13 +13,13 @@ def parse_lines(file):
 
 def main():
     total_cards = 0
-    card_duplicators = []
+    card_copy_windows = []
     for line in parse_lines(INPUT_DIR / '04.data'):
-        current_card_copies = 1 + sum(factor for _, factor in card_duplicators)
+        current_card_copies = 1 + sum(num_copies for _, num_copies in card_copy_windows)
         total_cards += current_card_copies
-        card_duplicators = [
-            (remaining_rounds - 1, factor)
-            for remaining_rounds, factor in card_duplicators
+        card_copy_windows = [
+            (remaining_rounds - 1, num_copies)
+            for remaining_rounds, num_copies in card_copy_windows
             if remaining_rounds > 1
         ]
         match = re.match(
@@ -30,7 +30,7 @@ def main():
         my_numbers = set([m.group(0) for m in re.finditer(r'(\d+)', match.group('my_numbers'))])
         num_correct = len(winner_numbers & my_numbers)
         if num_correct:
-            card_duplicators.append((num_correct, current_card_copies))
+            card_copy_windows.append((num_correct, current_card_copies))
     print(total_cards)
 
 
